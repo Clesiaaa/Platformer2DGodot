@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://ds4q2lh5mrwce"]
+
+[ext_resource type="Texture2D" uid="uid://s84a6o3tvdql" path="res://assets/pik.png" id="1_0lx27"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ypke"]
+size = Vector2(16, 20)
+
+[node name="piks" type="Area2D"]
+
+[node name="_" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8ypke")
+
+[node name="Pik" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -4.76837e-07)
+scale = Vector2(1, 1.25)
+texture = ExtResource("1_0lx27")

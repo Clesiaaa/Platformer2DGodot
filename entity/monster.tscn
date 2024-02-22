@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://bkisnr86lcfdc"]
+
+[ext_resource type="Script" path="res://script/monster.gd" id="1_g1h4q"]
+[ext_resource type="Texture2D" uid="uid://dtdjlssc64wv1" path="res://assets/monster.png" id="1_xcrat"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ca0jk"]
+size = Vector2(16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_icmpw"]
+radius = 9.0
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_7md1n"]
+a = Vector2(-162, 0)
+b = Vector2(136, 0)
+
+[node name="monster" type="CharacterBody2D"]
+script = ExtResource("1_g1h4q")
+
+[node name="_" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ca0jk")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Monster" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_xcrat")
+
+[node name="monster_hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="monster_hitbox"]
+shape = SubResource("CircleShape2D_icmpw")
+debug_color = Color(0.913725, 0, 0.713726, 0.419608)
+
+[node name="detection_range" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection_range"]
+shape = SubResource("SegmentShape2D_7md1n")
+debug_color = Color(0.521569, 0.572549, 0, 0.419608)
+
+[connection signal="area_entered" from="monster_hitbox" to="." method="_on_monster_hitbox_area_entered"]
+[connection signal="body_entered" from="detection_range" to="." method="_on_detection_range_body_entered"]
+[connection signal="body_exited" from="detection_range" to="." method="_on_detection_range_body_exited"]
